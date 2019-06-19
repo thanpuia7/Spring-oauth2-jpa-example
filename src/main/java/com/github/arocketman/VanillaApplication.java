@@ -5,14 +5,18 @@ import com.github.arocketman.entities.User;
 import com.github.arocketman.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@SpringBootApplication
+@SpringBootApplication  //(exclude = ElasticsearchDataAutoConfiguration.class)
 public class VanillaApplication {
     
 
@@ -20,8 +24,8 @@ public class VanillaApplication {
     public CommandLineRunner setupDefaultUser(UserService service) {
         return args -> {
             service.save(new User(
-                    "user", //username
-                    "user", //password
+                    "admin", //username
+                    "pass", //password
 Arrays.asList(new Role("USER"), new Role("ACTUATOR")),//roles 
                     true//Active
             ));
@@ -38,3 +42,4 @@ Arrays.asList(new Role("USER"), new Role("ACTUATOR")),//roles
     }
 
 }
+

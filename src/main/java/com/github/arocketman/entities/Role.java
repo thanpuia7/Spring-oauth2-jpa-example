@@ -1,6 +1,9 @@
 package com.github.arocketman.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +15,23 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
-public class Role extends BaseEntity{
 
-    private String name;
-    
+public class Role {
+
+	@Id
+	@GeneratedValue
+	private Integer role_id;
+
+	private String role;
+
+	public Role(String role) {
+		
+		this.role = role;
+	}
+	
+	
+
+
 }
+
+

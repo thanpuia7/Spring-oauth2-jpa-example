@@ -1,6 +1,9 @@
 package com.github.arocketman.entities;
 
 import javax.persistence.*;
+
+
+
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,12 +17,29 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class User extends BaseEntity{
 
+public class User {
+	
+	@Id
     private String username;
     private String password;
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    private List<Role> roles;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role"))
+	private List<Role> roles;
+    
     private boolean active;
+
+    
+    
+    
+	
+	
+	
+	
+	
+	
+
+
 
 }

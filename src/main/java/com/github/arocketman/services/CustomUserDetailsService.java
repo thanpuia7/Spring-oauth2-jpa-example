@@ -38,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 AuthorityUtils.createAuthorityList(
                         u.getRoles()
                                 .stream()
-                                .map(r -> "ROLE_" + r.getName().toUpperCase())
+                                .map(r -> "ROLE_" + r.getRole().toUpperCase())
                                 .collect(Collectors.toList())
                                 .toArray(new String[]{}))))
                 .orElseThrow(() -> new UsernameNotFoundException("No user with "
